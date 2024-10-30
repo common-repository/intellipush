@@ -1,0 +1,217 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ * since: 1.0.0
+ * Run: sass --no-source-map --watch intellipush-admin.scss:intellipush-admin.css --style compressed
+ */
+
+// Colors
+@import "../../includes/intellipush-variables.scss";
+@import "../../includes/intellipush-helper.scss";
+
+/* Native styles fixes */
+.intellipush {
+	.postbox {
+		> .hndle {
+			color: #eee;
+			background: $base-color;
+		}
+		> .handlediv {
+			.toggle-indicator {
+				&:before {
+					color: #eee;
+				}
+			}
+		}
+	}
+	.acf-repeater {
+		.acf-row {
+			&:nth-of-type(even) {
+				.acf-fields, .acf-accordion {
+					background: mix(#fff, #000, 96%) !important;
+				}
+				.acf-row-handle {
+					background: mix(#f4f4f4, #000, 96%) !important;
+				}
+			}
+		}
+	}
+	.acf-fields {
+		> .acf-field {
+			&[data-width] {
+				@media screen and (max-width: 782px) {
+					width: 100% !important;
+				}
+			}
+			.select2-container--default .select2-selection--single .select2-selection__clear {
+				margin-top: -2px;
+			}
+		}
+	}
+	.acf-accordion {
+		&.-open {
+			.acf-accordion-title {
+				.acf-accordion-view {
+					display: none;
+				}
+			}
+		}
+	}
+
+	#publishing-action {
+		width: 100%;
+		float: none;
+		.spinner {
+			float: none;
+			width: 100%;
+			margin: 0 auto 10px auto;
+			background-position: center center;
+			display: none;
+			&.is-active {
+				display: block;
+			}
+		}
+		#publish {
+			height: 40px;
+			display: block;
+			width: 100%;
+			padding-left: 50px;
+			padding-right: 50px;
+		}
+	}
+
+}
+/* Thickbox responsive */
+.intellipush-thickbox, .intellipush {
+	#TB_window {
+		top: 50% !important;
+		left: 50% !important;
+		height: auto !important;
+		transform: translate(-50%, -50%);
+		width: 1000px !important;
+		max-width: 90%;
+		max-height: 100%;
+		margin: 0 !important;
+		#TB_ajaxContent {
+			width: 100% !important;
+			height: auto !important;
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+	}
+}
+
+
+/* Dashboard widgets */
+[id^="intellipush_dashboard_widget"] {
+	.inside {
+		padding: 0;
+		margin: 0;
+		.inside-content {
+			padding: 12px;
+		}
+	}
+	.ip--dashboard-widget-footer {
+		padding: 12px;
+		border-top: 1px solid #eee;
+	}
+
+	/* Custom : Send now */
+	#acf-group_intellipush_messages_sendNow {
+		.acf-field-intellipush-messages-sendNow {
+			padding: 0 12px;
+		}
+		.acf-field-intellipush-messages-sendNow-target {
+			.acf-accordion-title {
+				color: $intellipush-white;
+				background: $highlight-color;
+				border-top: 1px solid #eee;
+				.acf-accordion-view {
+					color: $intellipush-white !important;
+				}
+			}
+		}
+	}
+}
+
+/* Page: Setup */
+.intellipush_page_intellipush-setup,
+.intellipush_page_intellipush-welcome {
+	.postbox {
+		&.splash {
+			color: $intellipush-white;
+			text-align: center;
+			padding-bottom: 30%;
+			background-image: url('../images/setup-background.svg');
+			background-color: $intellipush-base;
+			background-repeat: no-repeat;
+			background-position: center bottom;
+			background-size: 50% auto;
+			h2 {
+				font-size: 32px;
+				color: $intellipush-white;
+			}
+			p {
+				font-size: 18px;
+			}
+			.inside {
+				padding: 80px 20px;
+				margin: 0 auto;
+				max-width: 700px;
+			}
+			@media screen and (max-width:782px) {
+				padding-bottom: 0;
+				background-image: none !important;
+			}
+		}
+	}
+}
+.intellipush_page_intellipush-welcome {
+	.postbox {
+		&.splash {
+			background-image: url('../images/welcome-background.svg');
+		}
+	}
+}
+
+/* Global (Very be careful)*/
+#adminmenu {
+	li {
+		a {
+			&[href="admin.php?page=intellipush-setup"],
+			&[href="admin.php?page=intellipush-welcome"],
+			&[href="admin.php?page=intellipush-_credits"] {
+				display: none;
+			}
+		}
+	}
+}
+.intellipush-no-setup {
+	#adminmenu {
+		#toplevel_page_intellipush {
+			.wp-submenu {
+				display: none;
+				li {
+					a {
+						&[href="admin.php?page=intellipush"],
+						&[href="admin.php?page=intellipush-messages"],
+						&[href="admin.php?page=intellipush-tools"] {
+							display: none;
+						}
+					}
+				}
+			}
+			&:after {
+				display: none;
+			}
+			&.wp-has-current-submenu {
+				.wp-submenu {
+					display: block;
+				}
+				&:after {
+					display: block;
+				}
+			}
+		}
+	}
+}

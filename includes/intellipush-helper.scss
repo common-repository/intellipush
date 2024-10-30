@@ -1,0 +1,132 @@
+/**
+ * All of the SCSS helper
+ * since: 1.0.0
+ * Usage: @import "includes/intellipush-helper.scss";
+ */
+
+// Spacing
+$spacing-properties: (margin, padding);
+$spacing-sides: (top, right, bottom, left);
+@each $prop in $spacing-properties {
+	@for $i from -20 through 20 {
+		.ip--#{$prop}-#{$i*5} {
+			#{$prop}: #{$i*5}px !important;
+		}
+		@each $side in $spacing-sides {
+			.ip--#{$prop}-#{$side}-#{$i*5} {
+				#{$prop}-#{$side}: #{$i*5}px !important;
+			}
+		}
+	}
+}
+
+// Columns
+
+
+// Functions
+@function brightness($color) {
+	@return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
+}
+
+@function color-contrast($color, $dark: $intellipush-text, $light: $intellipush-white) {
+	@if $color == null {
+		@return null;
+	}
+	@else {
+		$color-brightness: brightness($color);  
+		$light-text-brightness: brightness($light);
+		$dark-text-brightness: brightness($dark);
+		@return if(abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness), $light, $dark);  
+	}
+}
+
+.ip--color-base 										{color: $base-color !important;}
+.ip--background-base									{background-color: $base-color !important;}
+
+.ip--color-intellipush-base 							{color: $intellipush-base !important;}
+.ip--background-intellipush-base						{background-color: $intellipush-base !important;}
+
+.ip--color-icon 										{color: $icon-color !important;}
+.ip--background-icon									{background-color: $icon-color !important;}
+
+.ip--color-highlight 									{color: $highlight-color !important;}
+.ip--background-highlight								{background-color: $highlight-color !important;}
+
+.ip--color-notification 								{color: $notification-color !important;}
+.ip--background-notification							{background-color: $notification-color !important;}
+
+.ip--color-white 										{color: $intellipush-white !important;}
+a.ip--color-white:hover									{color: $intellipush-white !important;}
+.ip--background-white									{background-color: $intellipush-white !important;}
+
+.ip--color-link 										{color: $link !important;}
+a.ip--color-link:hover 									{color: $link-focus !important;}
+.ip--background-link 									{background-color: $link !important;}
+
+.ip--color-red 											{color: $intellipush-red !important;}
+a.ip--color-red:hover									{color: $intellipush-red-darker !important;}
+.ip--background-red 									{background-color: $intellipush-red !important;}
+
+.ip--color-green 										{color: $intellipush-green !important;}
+a.ip--color-green:hover									{color: $intellipush-green-darker !important;}
+.ip--background-green 									{background-color: $intellipush-green !important;}
+
+.ip--display-none										{display: none !important;}
+.ip--display-block										{display: block !important;}
+.ip--display-inline										{display: inline !important;}
+.ip--display-inline-block								{display: inline-block !important;}
+
+.ip--font-weight-normal 								{font-weight: normal !important;}
+.ip--font-weight-bold 									{font-weight: bold !important;}
+
+.ip--font-style-normal 									{font-style: normal !important;}
+.ip--font-style-italic 									{font-style: italic !important;}
+
+.ip--cursor-default										{cursor: default !important;}
+.ip--cursor-pointer 									{cursor: pointer !important;}
+
+.ip--text-decoration-none 								{text-decoration: none !important;}
+.ip--text-decoration-underline 							{text-decoration: underline !important;}
+
+.ip--text-align-left 									{text-align: left !important;}
+.ip--text-align-center 									{text-align: center !important;}
+.ip--text-align-right 									{text-align: right !important;}
+
+.ip--float-left 										{float: left !important;}
+.ip--float-right 										{float: right !important;}
+.ip--float-none 										{float: none !important;}
+
+.ip--width-100-p 										{width: 100%;}
+.ip--width-75-p 										{width: 75%;}
+.ip--width-50-p 										{width: 50%;}
+.ip--width-25-p 										{width: 25%;}
+
+.ip--button-large {
+	font-size: 18px !important;
+	line-height: 38px !important;
+	height: 38px !important;
+	padding: 0 20px 1px !important; 
+}
+
+.ip--countrycode {
+	font-size: smaller;
+	margin-right: 3px;
+	&:before 	{content: '(';}
+	&:after 	{content: ')';}
+}
+
+
+.ip--send-now-load-message-templates {
+	.select2 {
+		display: block;
+		.select2-selection {
+			display: none;
+		}
+	}
+}
+.ip--select2-dropdown-hidden {
+	min-width: 300px;
+	border-top: 1px solid #aaa !important;
+	border-top-left-radius: 4px !important;
+	border-top-right-radius: 4px !important;
+}
